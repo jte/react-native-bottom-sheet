@@ -55,6 +55,7 @@ export interface BottomSheetInternalContextType
   isContentHeightFixed: SharedValue<boolean>;
   isInTemporaryPosition: SharedValue<boolean>;
   shouldHandleKeyboardEvents: SharedValue<boolean>;
+  animatedViewContainerHeight: SharedValue<number>;
 
   // methods
   stopAnimation: () => void;

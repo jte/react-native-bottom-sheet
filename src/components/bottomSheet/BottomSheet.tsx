@@ -306,6 +306,7 @@ const BottomSheetComponent = forwardRef<BottomSheet, BottomSheetProps>(
     const animatedHandleGestureState = useSharedValue<State>(
       State.UNDETERMINED
     );
+    const animatedViewContainerHeight = useSharedValue<number>(0);
     //#endregion
 
     //#region hooks variables
@@ -1349,6 +1350,7 @@ const BottomSheetComponent = forwardRef<BottomSheet, BottomSheetProps>(
     //#region contexts variables
     const internalContextVariables = useMemo(
       () => ({
+        animatedViewContainerHeight,
         enableContentPanningGesture,
         enableDynamicSizing,
         overDragResistanceFactor,
@@ -1391,6 +1393,7 @@ const BottomSheetComponent = forwardRef<BottomSheet, BottomSheetProps>(
         removeScrollableRef,
       }),
       [
+        animatedViewContainerHeight,
         animatedIndex,
         animatedPosition,
         animatedContentHeight,
@@ -1910,7 +1913,9 @@ const BottomSheetComponent = forwardRef<BottomSheet, BottomSheetProps>(
               detached={detached}
               style={_providedContainerStyle}
             >
-              <Animated.View style={containerStyle}>
+              <Animated.View onLayout={event => (
+                  animatedViewContainerHeight.value = event.nativeEvent.layout.height
+                )} style={containerStyle}>
                 <BottomSheetBackgroundContainer
                   key="BottomSheetBackgroundContainer"
                   animatedIndex={animatedIndex}

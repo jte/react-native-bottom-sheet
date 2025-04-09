@@ -45,6 +45,7 @@ export const useGestureEventsHandlersDefault: GestureEventsHandlersHookType =
   () => {
     //#region variables
     const {
+      animatedViewContainerHeight,
       animatedPosition,
       animatedSnapPoints,
       animatedKeyboardState,
@@ -363,6 +364,19 @@ export const useGestureEventsHandlersDefault: GestureEventsHandlersHookType =
           velocityY,
           snapPoints
         );
+        
+        /** 
+         * Close when it's halfway hidden 
+         */
+        if (animatedPosition.value < -animatedViewContainerHeight.value/2)
+        {
+          animateToPosition(
+            -999,
+            ANIMATION_SOURCE.GESTURE,
+            velocityY / 2
+          );
+          return;
+        }
 
         /**
          * if destination point is the same as the current position,
