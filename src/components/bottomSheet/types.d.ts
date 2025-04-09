@@ -105,6 +105,7 @@ export interface BottomSheetProps
    * @default ReduceMotion.System
    */
   overrideReduceMotion?: ReduceMotion;
+  sheetDirection: 'top' | 'bottom';
   //#endregion
 
   //#region layout

@@ -30,7 +30,7 @@ export const usePropsValidator = ({
       `'snapPoints' was not provided! please provide at least one snap point.`
     );
 
-    _snapPoints.map(snapPoint => {
+    /*_snapPoints.map(snapPoint => {
       const _snapPoint =
         typeof snapPoint === 'number'
           ? snapPoint
@@ -40,7 +40,7 @@ export const usePropsValidator = ({
         _snapPoint > 0 || _snapPoint === INITIAL_SNAP_POINT,
         `Snap point '${snapPoint}' is invalid. if you want to allow user to close the sheet, Please use 'enablePanDownToClose' prop.`
       );
-    });
+    });*/
 
     invariant(
       'value' in _snapPoints || _snapPoints.length > 0 || enableDynamicSizing,

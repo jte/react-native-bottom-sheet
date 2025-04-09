@@ -112,6 +112,7 @@ const BottomSheetComponent = forwardRef<BottomSheet, BottomSheetProps>(
       enableDynamicSizing = DEFAULT_DYNAMIC_SIZING,
       overDragResistanceFactor = DEFAULT_OVER_DRAG_RESISTANCE_FACTOR,
       overrideReduceMotion: _providedOverrideReduceMotion,
+      sheetDirection: _providedSheetDirection,
 
       // styles
       style: _providedStyle,
@@ -228,8 +229,7 @@ const BottomSheetComponent = forwardRef<BottomSheet, BottomSheetProps>(
       [animatedSnapPoints]
     );
     const animatedClosedPosition = useDerivedValue(() => {
-      let closedPosition = animatedContainerHeight.value;
-
+      let closedPosition = /*animatedContainerHeight.value*/-999;
       if ($modal || detached) {
         closedPosition = animatedContainerHeight.value + bottomInset;
       }
@@ -520,7 +520,7 @@ const BottomSheetComponent = forwardRef<BottomSheet, BottomSheetProps>(
       /**
        * we add the close state index `-1`
        */
-      adjustedSnapPoints.push(animatedContainerHeight.value);
+      adjustedSnapPoints.push(/*animatedContainerHeight.value*/-999);
       adjustedSnapPointsIndexes.push(-1);
 
       const currentIndex = isLayoutCalculated.value
@@ -1501,7 +1501,7 @@ const BottomSheetComponent = forwardRef<BottomSheet, BottomSheetProps>(
       _providedAnimationConfigs,
     ]);
     const contentContainerStyle = useMemo(
-      () => [styles.contentContainer, contentContainerAnimatedStyle],
+      () => [styles.contentContainer, /*contentContainerAnimatedStyle*/],
       [contentContainerAnimatedStyle]
     );
     /**

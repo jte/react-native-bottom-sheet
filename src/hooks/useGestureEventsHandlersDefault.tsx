@@ -115,6 +115,8 @@ export const useGestureEventsHandlersDefault: GestureEventsHandlersHookType =
       function handleOnChange(source, { translationY }) {
         let highestSnapPoint = animatedHighestSnapPoint.value;
 
+        if (translationY > 0) return;
+
         /**
          * if keyboard is shown, then we set the highest point to the current
          * position which includes the keyboard height.
@@ -217,7 +219,7 @@ export const useGestureEventsHandlersDefault: GestureEventsHandlersHookType =
               highestSnapPoint -
               Math.sqrt(1 + (highestSnapPoint - draggedPosition)) *
                 overDragResistanceFactor;
-            animatedPosition.value = resistedPosition;
+            animatedPosition.value = /*resistedPosition*/draggedPosition;
             return;
           }
 
@@ -229,7 +231,7 @@ export const useGestureEventsHandlersDefault: GestureEventsHandlersHookType =
               lowestSnapPoint +
               Math.sqrt(1 + (draggedPosition - lowestSnapPoint)) *
                 overDragResistanceFactor;
-            animatedPosition.value = resistedPosition;
+            animatedPosition.value = /*resistedPosition*/draggedPosition;
             return;
           }
 

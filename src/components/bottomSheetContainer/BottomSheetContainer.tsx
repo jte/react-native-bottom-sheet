@@ -26,12 +26,12 @@ function BottomSheetContainerComponent({
   const containerStyle = useMemo<StyleProp<ViewStyle>>(
     () => [
       style,
-      styles.container,
+      //styles.container,
       {
-        top: topInset,
-        bottom: bottomInset,
-        overflow: detached ? 'visible' : 'hidden',
-      },
+        //top: topInset,
+        //bottom: bottomInset,
+        //overflow: detached ? 'visible' : 'hidden',
+      },//
     ],
     [style, detached, topInset, bottomInset]
   );
